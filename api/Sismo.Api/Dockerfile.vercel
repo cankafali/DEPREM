@@ -4,7 +4,7 @@ WORKDIR /src
 COPY Sismo.Api.csproj .
 RUN dotnet restore
 COPY . .
-RUN rm -rf bin obj && dotnet publish -c Release -o /app --no-restore
+RUN dotnet publish -c Release -o /app --no-restore
 
 # Full aspnet image (not chiseled): it ships ICU, which the tr-TR province matching needs.
 FROM mcr.microsoft.com/dotnet/aspnet:10.0
