@@ -19,6 +19,10 @@ public sealed class SyncOptions
 public sealed class SyncState
 {
     private readonly Lock _gate = new();
+    private readonly TaskCompletionSource _firstRound = new(TaskCreationOptions.RunContinuationsAsynchronously);
+
+    /// <summary>Completes after the first sync round, successful or not.</summary>
+    public Task FirstRound => _firstRound.Task;
     public DateTime? LastSuccessUtc { get; private set; }
     public DateTime? LastAttemptUtc { get; private set; }
     public string? LastError { get; private set; }
@@ -26,11 +30,13 @@ public sealed class SyncState
     public void MarkSuccess(DateTime nowUtc)
     {
         lock (_gate) { LastSuccessUtc = nowUtc; LastAttemptUtc = nowUtc; LastError = null; }
+        _firstRound.TrySetResult();
     }
 
     public void MarkFailure(DateTime nowUtc, string error)
     {
         lock (_gate) { LastAttemptUtc = nowUtc; LastError = error; }
+        _firstRound.TrySetResult();
     }
 }
 

@@ -1,0 +1,19 @@
+# Vercel container service (see vercel.json at the repo root). Build context: api/Sismo.Api
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /src
+COPY Sismo.Api.csproj .
+RUN dotnet restore
+COPY . .
+RUN rm -rf bin obj && dotnet publish -c Release -o /app --no-restore
+
+# Full aspnet image (not chiseled): it ships ICU, which the tr-TR province matching needs.
+FROM mcr.microsoft.com/dotnet/aspnet:10.0
+WORKDIR /app
+COPY --from=build /app .
+
+# Vercel routes traffic to $PORT (80 by default). There is no persistent disk: the database lives
+# in /tmp and is refilled from AFAD with one request whenever a new instance starts.
+ENV PORT=80 \
+    DOTNET_EnableDiagnostics=0 \
+    ConnectionStrings__Default="Data Source=/tmp/sismo.db"
+ENTRYPOINT ["dotnet", "Sismo.Api.dll"]

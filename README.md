@@ -111,6 +111,10 @@ Frontend: `npm --prefix web run lint` ve `npm --prefix web run build`. CI (GitHu
 
 ## Yayına alma
 
+**Tek Vercel projesi (web + API):** kökteki `vercel.json` iki servis tanımlar: `web/` (Vite) ve `api/Sismo.Api/Dockerfile.vercel` (container). `/api`, `/hubs`, `/health`, `/docs` API'ye, geri kalan her şey web'e gider. Aynı alan adı olduğu için CORS ve `VITE_API_URL` gerekmez. Vercel ayarlarında Root Directory boş (repo kökü) olmalı.
+
+Vercel'in sınırları: kalıcı disk yok, SQLite `/tmp`'de durur ve her yeni instance ilk istekte AFAD'dan tek istekle dolar (ilk istek bu sırada ~2-3 sn bekler). Instance 5 dk trafik almazsa kapanır; sayfa açıkken 30 sn'de bir `/health` sorgulandığı için senkron döngüsü çalışmaya devam eder. WebSocket desteği Vercel'de beta; bağlanamazsa arayüz 60 sn'lik yoklamaya düşer.
+
 **API (Fly.io, önerilen):** `api/Sismo.Api/fly.toml` hazır. SQLite kalıcı bir volume'da durur, makine uykuya geçmez (senkron döngüsü sürekli çalışmalı).
 
 ```bash

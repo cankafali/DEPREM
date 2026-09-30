@@ -17,3 +17,5 @@ Spesifikasyonun belirsiz bıraktığı ya da gerçek veriyle çeliştiği noktal
 - Output cache `Origin` başlığına göre de ayrışıyor; aksi halde önbellekten dönen yanıt yanlış CORS başlığı taşıyabilir.
 - Rate limit için `X-Forwarded-For` güveniliyor (Render/Fly proxy'si arkasında gerçek IP için); proxy'siz ortamda bu başlık taklit edilebilir.
 - User-Agent `Sismo/1.0`; repo URL'si belli olunca `Afad:UserAgent` ayarına `(+{REPO_URL})` eklenmeli.
+- Vercel container'ı `PORT` değişkenini okuyor; kalıcı disk olmadığı için SQLite `/tmp`'de ve soğuk başlangıçta `/api` istekleri ilk senkron bitene kadar (en fazla 25 sn) bekliyor, boş liste dönmüyor ve önbelleğe girmiyor.
+- Vercel imajı chiseled değil tam `aspnet` imajı: `tr-TR` il karşılaştırması ICU istiyor, `InvariantGlobalization` kullanılamaz.

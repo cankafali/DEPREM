@@ -11,6 +11,10 @@ using Sismo.Api.Sync;
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
 
+// Vercel (and Render) tell the container which port to listen on through PORT.
+if (Environment.GetEnvironmentVariable("PORT") is { Length: > 0 } port)
+    builder.WebHost.UseUrls($"http://0.0.0.0:{port}");
+
 builder.Services.AddSingleton(TimeProvider.System);
 builder.Services.AddDbContext<AppDbContext>(o =>
     o.UseSqlite(config.GetConnectionString("Default") ?? "Data Source=sismo.db"));
@@ -88,6 +92,20 @@ app.UseForwardedHeaders();
 app.UseExceptionHandler();
 app.UseStatusCodePages();
 app.UseCors();
+
+if (config.GetValue("Sync:Enabled", true))
+{
+    // After a cold start with an empty database (e.g. Vercel, no persistent disk), hold API requests
+    // until the first AFAD sync lands so nobody sees — or caches — an empty list.
+    var syncState = app.Services.GetRequiredService<SyncState>();
+    app.Use(async (ctx, next) =>
+    {
+        if (!syncState.FirstRound.IsCompleted && ctx.Request.Path.StartsWithSegments("/api"))
+            await Task.WhenAny(syncState.FirstRound, Task.Delay(TimeSpan.FromSeconds(25), ctx.RequestAborted));
+        await next();
+    });
+}
+
 app.UseRateLimiter();
 app.UseOutputCache();
 
