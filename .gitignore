@@ -55,3 +55,7 @@ desktop.ini
 
 # Working copy of the design spec (not source code)
 SPEC.md
+
+# npm run from the repo root by mistake (the web app lives in web/)
+/package.json
+/package-lock.json
