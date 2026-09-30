@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="Sismo.Api/Sismo.Api.csproj" />
+  <Project Path="Sismo.Tests/Sismo.Tests.csproj" />
+</Solution>
