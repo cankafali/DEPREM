@@ -1,0 +1,160 @@
+.wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-bottom: 1px solid var(--grid);
+  font-size: var(--fs-xs);
+  color: var(--ink-soft);
+}
+
+.toolbarLabel { flex: none; }
+
+.sort { display: flex; gap: 2px; }
+
+.sortBtn {
+  border: 0;
+  background: none;
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: var(--ink-soft);
+}
+.sortBtn:hover { color: var(--ink); }
+.sortBtn[aria-checked="true"] {
+  color: var(--ink);
+  background: var(--grid);
+  font-weight: 550;
+}
+
+.list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 10px 20px;
+  border: 0;
+  border-bottom: 1px solid var(--grid);
+  background: none;
+  text-align: left;
+  transition: background-color var(--dur) var(--ease);
+}
+.row:hover,
+.row[data-highlighted] {
+  background: color-mix(in srgb, var(--grid) 55%, transparent);
+}
+.row[aria-current="true"] {
+  background: color-mix(in srgb, var(--focus) 10%, transparent);
+  box-shadow: inset 3px 0 0 var(--focus);
+}
+.row:focus-visible { outline-offset: -2px; }
+
+.mag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: none;
+  width: 76px;
+}
+
+.dotWrap {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex: none;
+}
+
+.dot {
+  display: block;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 18%, transparent);
+}
+
+.magValue {
+  font-size: var(--fs-lg);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.place {
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.meta {
+  font-size: var(--fs-xs);
+  color: var(--ink-soft);
+}
+
+.fresh { animation: slide-in 480ms var(--ease); }
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: none; }
+}
+
+.skeleton {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--grid);
+}
+.skDot {
+  width: 60px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--skeleton);
+}
+.skLines { display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.skLines span { height: 10px; border-radius: 4px; background: var(--skeleton); }
+.skLines span:first-child { width: 70%; }
+.skLines span:last-child { width: 45%; }
+
+.empty {
+  padding: 28px 20px;
+  color: var(--ink-soft);
+}
+.empty p { margin: 0 0 6px; }
+.emptyTitle { color: var(--ink); font-weight: 550; }
+
+.resetBtn,
+.more {
+  margin-top: 12px;
+  padding: 8px 14px;
+  border: 1px solid var(--grid);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-weight: 500;
+}
+.resetBtn:hover,
+.more:hover { border-color: var(--ink-soft); }
+
+.more {
+  display: block;
+  margin: 12px 20px 20px;
+  width: calc(100% - 40px);
+}

@@ -1,0 +1,103 @@
+.panel {
+  position: relative;
+  background: var(--surface);
+}
+
+.close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--ink-soft);
+}
+.close:hover { background: var(--grid); color: var(--ink); }
+
+.body { padding: 20px 24px 24px; }
+
+.heading {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0;
+  padding-right: 40px;
+  font-weight: inherit;
+}
+.heading:focus { outline: none; }
+
+.magLine { display: flex; align-items: center; gap: 12px; }
+
+.dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 18%, transparent);
+}
+
+.mag {
+  font-size: var(--fs-2xl);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.magType {
+  align-self: flex-end;
+  padding-bottom: 4px;
+  font-size: var(--fs-md);
+  color: var(--ink-soft);
+}
+
+.place {
+  font-size: var(--fs-md);
+  font-weight: 550;
+  line-height: 1.3;
+}
+
+.when {
+  display: flex;
+  flex-direction: column;
+  margin: 8px 0 0;
+  font-size: var(--fs-sm);
+}
+.rel { color: var(--ink-soft); }
+
+.facts {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 16px;
+  margin: 20px 0 0;
+  padding: 16px 0 0;
+  border-top: 1px solid var(--grid);
+  font-size: var(--fs-sm);
+}
+.facts dt { color: var(--ink-soft); }
+.facts dd { margin: 0; font-weight: 500; }
+.hint { font-weight: 400; color: var(--ink-soft); font-size: var(--fs-xs); }
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin-top: 20px;
+  font-size: var(--fs-sm);
+  font-weight: 500;
+}
+
+.linkBtn {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--focus);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  font-weight: 500;
+}
+
+.placeholder { margin: 0; font-size: var(--fs-sm); font-weight: 400; color: var(--ink-soft); padding-right: 40px; }
+.sk { display: block; width: 50%; height: 48px; border-radius: 6px; background: var(--skeleton); }

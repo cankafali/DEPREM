@@ -1,0 +1,66 @@
+.strip {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px 20px;
+  border-bottom: 1px solid var(--grid);
+}
+
+.summary {
+  margin: 0;
+  font-size: var(--fs-md);
+  font-weight: 550;
+}
+
+.skText {
+  display: inline-block;
+  width: 60%;
+  height: 1em;
+  border-radius: 4px;
+  background: var(--skeleton);
+  vertical-align: middle;
+}
+
+.chart { margin: 0; }
+
+.svg {
+  display: block;
+  width: 100%;
+  height: 40px;
+}
+
+.baseline { stroke: var(--grid); stroke-width: 1; }
+
+.bar {
+  fill: var(--ink-soft);
+  opacity: 0.55;
+  transition: opacity var(--dur) var(--ease);
+}
+.bar:hover { opacity: 1; }
+.barCurrent { fill: var(--ink); }
+
+.axis {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4px;
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: var(--fs-xs);
+  color: var(--ink-soft);
+}
+.legend li { display: flex; align-items: center; gap: 5px; }
+.legendDot {
+  display: inline-block;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--ink) 18%, transparent);
+}
+.legendCount { color: var(--ink); font-weight: 500; }

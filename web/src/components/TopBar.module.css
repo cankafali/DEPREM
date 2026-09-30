@@ -1,0 +1,62 @@
+.bar {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  height: var(--header-h);
+  padding: 0 20px;
+  border-bottom: 1px solid var(--grid);
+  background: var(--paper);
+  position: relative;
+  z-index: 20;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  font-size: var(--fs-md);
+  font-weight: 650;
+  letter-spacing: -0.01em;
+  flex: none;
+}
+
+.trace {
+  flex: 1;
+  min-width: 0;
+}
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: none;
+  font-size: var(--fs-xs);
+  color: var(--ink-soft);
+}
+
+.live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.live[data-status="offline"],
+.live[data-status="connecting"] { color: var(--ink-soft); }
+
+.liveDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--live);
+}
+.live[data-status="offline"] .liveDot,
+.live[data-status="connecting"] .liveDot {
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--ink-soft);
+}
+
+@media (max-width: 767px) {
+  .bar { gap: 12px; padding: 0 12px; }
+}

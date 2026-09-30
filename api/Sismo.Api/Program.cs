@@ -103,6 +103,32 @@ app.MapGroup("/api")
     .MapStatsEndpoints();
 
 app.MapHealthEndpoints();
+
+if (app.Environment.IsDevelopment())
+{
+    // Pushes a synthetic quake to connected clients (not stored) to try the live UI without waiting for AFAD.
+    app.MapPost("/dev/simulate-quake", async (IQuakeNotifier notifier, TimeProvider time, double? mag, double? lat, double? lon) =>
+        {
+            var now = time.GetUtcNow().UtcDateTime;
+            var quake = new Sismo.Api.Domain.Earthquake
+            {
+                Id = $"sim-{now.Ticks}",
+                OccurredAtUtc = now,
+                Latitude = lat ?? 39.21,
+                Longitude = lon ?? 28.18,
+                DepthKm = 8,
+                Magnitude = mag ?? 3.4,
+                MagnitudeType = "ML",
+                Province = "Balıkesir",
+                District = "Sındırgı",
+                Location = "Sındırgı (Balıkesir)",
+                UpdatedAtUtc = now,
+            };
+            await notifier.PublishAsync([quake], [], default);
+            return Results.Ok(Sismo.Api.Domain.EarthquakeDto.From(quake));
+        })
+        .ExcludeFromDescription();
+}
 app.MapHub<QuakesHub>("/hubs/quakes");
 
 app.Run();

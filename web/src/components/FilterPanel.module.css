@@ -1,0 +1,181 @@
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--grid);
+}
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+
+.segmented {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  padding: 3px;
+  gap: 2px;
+  border-radius: var(--radius);
+  background: var(--grid);
+}
+.segmented button {
+  border: 0;
+  background: none;
+  padding: 6px 8px;
+  border-radius: 6px;
+  color: var(--ink-soft);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  white-space: nowrap;
+  transition: background-color var(--dur) var(--ease), color var(--dur) var(--ease);
+}
+.segmented button:hover { color: var(--ink); }
+.segmented button[aria-checked="true"] {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgb(0 0 0 / 0.08);
+}
+
+.magRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: var(--fs-xs);
+  color: var(--ink-soft);
+}
+.magOut { color: var(--ink); font-weight: 600; font-size: var(--fs-sm); }
+
+.slider {
+  appearance: none;
+  width: 100%;
+  height: 22px;
+  margin: 0;
+  background: transparent;
+}
+.slider::-webkit-slider-runnable-track {
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--ink) var(--pct), var(--grid) var(--pct));
+}
+.slider::-moz-range-track {
+  height: 3px;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--ink) var(--pct), var(--grid) var(--pct));
+}
+.slider::-webkit-slider-thumb {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -7.5px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--ink);
+}
+.slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--surface);
+  border: 2px solid var(--ink);
+}
+
+.searchWrap { position: relative; }
+
+.input,
+.select {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid var(--grid);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+.input::placeholder { color: var(--ink-soft); }
+.input:hover,
+.select:hover { border-color: var(--ink-soft); }
+
+.select { width: auto; padding: 4px 8px; }
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border: 1px solid var(--grid);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-weight: 500;
+}
+.button:hover:not(:disabled) { border-color: var(--ink-soft); }
+.button:disabled { color: var(--ink-soft); cursor: progress; }
+
+.nearActive {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 6px 6px 6px 12px;
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--focus) 10%, transparent);
+}
+.nearText { flex: 1; min-width: 0; font-size: var(--fs-xs); font-weight: 500; }
+
+.linkBtn {
+  border: 0;
+  background: none;
+  color: var(--focus);
+  padding: 4px 6px;
+  font-size: var(--fs-xs);
+  font-weight: 500;
+}
+
+.note {
+  margin: 0;
+  font-size: var(--fs-xs);
+  color: var(--ink-soft);
+}
+
+/* Mobile chips */
+.chipsWrap { position: relative; }
+
+.chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 10px 12px;
+  scrollbar-width: none;
+}
+.chips::-webkit-scrollbar { display: none; }
+
+.chip {
+  flex: none;
+  min-height: 36px;
+  padding: 6px 14px;
+  border: 1px solid var(--grid);
+  border-radius: 999px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  font-size: var(--fs-xs);
+  font-weight: 500;
+  white-space: nowrap;
+}
+.chip[data-active] {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: var(--paper);
+}
+.chip[aria-expanded="true"] { outline: 2px solid var(--focus); outline-offset: 1px; }
+
+.popover {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  top: calc(100% - 2px);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--surface);
+  box-shadow: var(--shadow);
+  z-index: 5;
+}

@@ -1,0 +1,59 @@
+:root {
+  --paper:     #F5F6F4;  /* zemin: hafif yeşilimsi kâğıt beyazı */
+  --grid:      #DDE2DC;  /* sismograf ızgarası, ayırıcılar */
+  --ink:       #1E2A2F;  /* ana metin, sismograf çizgisi */
+  --ink-soft:  #56656B;  /* ikincil metin */
+  --focus:     #2F6FEB;  /* odak halkası, seçili öğe, linkler */
+  --live:      #2E8B57;  /* canlı bağlantı noktası */
+
+  /* Büyüklük ölçeği: sıralı, renk körlüğüne dayanıklı (açıktan koyuya + boyut farkı) */
+  --m-lt2:  #A9B8C0;     /* M < 2 */
+  --m-2:    #7E9AA8;     /* 2.0 – 2.9 */
+  --m-3:    #E3A13B;     /* 3.0 – 3.9 (yalnızca dolgu, metin rengi olarak kullanma) */
+  --m-4:    #D9642A;     /* 4.0 – 4.9 */
+  --m-5:    #A8232B;     /* 5.0 + */
+
+  /* Türetilmiş yüzeyler */
+  --surface:   #FFFFFF;
+  --skeleton:  #E6EAE5;
+  --shadow:    0 1px 2px rgb(30 42 47 / 0.06), 0 8px 24px rgb(30 42 47 / 0.10);
+
+  /* Tipografi ölçeği */
+  --fs-xs: 0.8125rem;
+  --fs-sm: 0.9375rem;
+  --fs-md: 1.0625rem;
+  --fs-lg: 1.5rem;
+  --fs-xl: 2.25rem;
+  --fs-2xl: 3rem;
+
+  /* Hareket */
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+  --dur: 200ms;
+
+  /* Yerleşim */
+  --header-h: 56px;
+  --sidebar-w: 380px;
+  --radius: 8px;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #151C1F; --grid: #26322F; --ink: #E4E9E6; --ink-soft: #97A5A2; --focus: #7FA8FF;
+    --surface: #1B2427;
+    --skeleton: #222D2C;
+    --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.35);
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #151C1F; --grid: #26322F; --ink: #E4E9E6; --ink-soft: #97A5A2; --focus: #7FA8FF;
+  --surface: #1B2427;
+  --skeleton: #222D2C;
+  --shadow: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 24px rgb(0 0 0 / 0.35);
+}
+
+@media (max-width: 767px) {
+  :root { --header-h: 48px; }
+}

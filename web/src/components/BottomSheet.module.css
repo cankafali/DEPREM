@@ -1,0 +1,47 @@
+.sheet {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px 16px 0 0;
+  background: var(--paper);
+  box-shadow: 0 -1px 0 var(--grid), 0 -8px 28px rgb(0 0 0 / 0.12);
+  transition: height 280ms var(--ease);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.sheet[data-dragging] { transition: none; }
+
+.grab {
+  flex: none;
+  touch-action: none;
+  cursor: grab;
+  user-select: none;
+}
+
+.handle {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  background: none;
+}
+.handle span {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--grid);
+}
+.handle:focus-visible { outline-offset: -2px; }
+
+.content {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  border-top: 1px solid var(--grid);
+}
