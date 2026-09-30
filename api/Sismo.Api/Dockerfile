@@ -4,7 +4,7 @@ WORKDIR /src
 COPY Sismo.Api.csproj .
 RUN dotnet restore
 COPY . .
-RUN rm -rf bin obj && dotnet publish -c Release -o /app --no-restore
+RUN dotnet publish -c Release -o /app --no-restore
 
 FROM mcr.microsoft.com/dotnet/aspnet:10.0
 WORKDIR /app
