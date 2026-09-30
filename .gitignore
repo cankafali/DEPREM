@@ -1,15 +1,57 @@
+# ---------- .NET ----------
 bin/
 obj/
+TestResults/
+*.user
+*.suo
+*.rsuser
+*.nupkg
+*.snupkg
+publish/
+artifacts/
+
+# SQLite database created at runtime (refilled from AFAD on first start)
 *.db
 *.db-shm
 *.db-wal
+*.db-journal
+
+# ---------- Node / Vite ----------
 node_modules/
 dist/
+dist-ssr/
 .vite/
-*.local
+*.tsbuildinfo
+coverage/
+
+# ---------- Logs ----------
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# ---------- Environment / secrets ----------
 .env
+.env.*
+!.env.example
+*.local
+
+# ---------- Editors & OS ----------
 .vs/
 .vscode/
 .idea/
-TestResults/
+*.swp
+*.sw?
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---------- Local tooling ----------
+.claude/
 .playwright-mcp/
+.fly/
+
+# Working copy of the design spec (not source code)
+SPEC.md
