@@ -18,6 +18,7 @@ export default defineConfig({
   optimizeDeps: { exclude: ['maplibre-gl'] },
   worker: { format: 'es' },
   build: {
+    chunkSizeWarningLimit: 1100, // MapLibre alone is ~1 MB; it is lazy-loaded with the map
     rollupOptions: {
       output: {
         manualChunks: (id) => (id.includes('maplibre-gl') ? 'maplibre' : undefined),

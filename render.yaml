@@ -1,0 +1,15 @@
+# Render blueprint for the API. The free plan has no persistent disk: the SQLite file is lost on
+# every restart and the service backfills 30 days from AFAD in a single request on start-up.
+# The free plan also sleeps after inactivity, which pauses the sync loop; Fly.io (api/fly.toml) avoids both.
+services:
+  - type: web
+    name: sismo-api
+    runtime: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: api/Sismo.Api/Dockerfile
+    dockerContext: api/Sismo.Api
+    healthCheckPath: /health
+    envVars:
+      - key: Cors__Origins__0
+        sync: false # set to the Vercel domain, e.g. https://sismo.vercel.app
